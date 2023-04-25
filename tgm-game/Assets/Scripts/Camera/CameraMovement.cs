@@ -8,7 +8,7 @@ public class CameraMovement : MonoBehaviour
 
     public Vector3 playerPos;
 
-    public float smoothSpeed = 0.125f;
+    public float smoothSpeed;
 
     // Update is called once per frame
     void FixedUpdate()

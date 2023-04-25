@@ -4,35 +4,35 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float moveSpeed;
+    float moveSpeed;
     public AnimationCurve c;
 
-    float moveTime;    
+    public float moveTime;    
 
     public Rigidbody2D rb;
 
-    Vector2 movement;
+    public Vector2 movement;
 
     // Update is called once per frame
     void Update()
     {
-        /*
-         * Unity crashes on move
-         * TODO: Implement move axis value to see if while loop is fitting
-         * TODO: Increase moveTime if moving
-         */
-
         moveSpeed = c.Evaluate(moveTime);
-        
-        while ((movement.x != 0) || (movement.y != 0))
+        print(moveSpeed);
+
+        if (movement != new Vector2(0,0))
         {
             moveTime += Time.deltaTime;
+
+            if (movement.x == 0 && movement.y == 0)
+            {
+                moveSpeed = 0;
+            }
         }
-        
+
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
     }
-
+    
     private void FixedUpdate()
     {
         rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
