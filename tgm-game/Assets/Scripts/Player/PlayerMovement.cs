@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    float moveSpeed;
+    public float moveSpeed;
     public AnimationCurve c;
 
     public float moveTime;    
@@ -16,23 +16,19 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        moveSpeed = c.Evaluate(moveTime);
-        print(moveSpeed);
-
-        if (movement != new Vector2(0,0))
-        {
-            moveTime += Time.deltaTime;
-
-            if (movement.x == 0 && movement.y == 0)
-            {
-                moveSpeed = 0;
-            }
-        }
-
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
+
+        moveSpeed = c.Evaluate(moveTime);
+
+        if (movement != new Vector2(0, 0)) moveTime += Time.deltaTime;
+        else if (((Input.GetAxisRaw("Horizontal") == 0f) && (Input.GetAxisRaw("Vertical") == 0f)) && moveTime != 0)
+        {
+            moveSpeed = 0f;
+            moveTime = 0f;
+        }
     }
-    
+
     private void FixedUpdate()
     {
         rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
