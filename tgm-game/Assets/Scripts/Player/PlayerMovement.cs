@@ -22,7 +22,7 @@ public class PlayerMovement : MonoBehaviour
         moveSpeed = c.Evaluate(moveTime);
 
         if (movement != new Vector2(0, 0)) moveTime += Time.deltaTime;
-        else if (((Input.GetAxisRaw("Horizontal") == 0f) && (Input.GetAxisRaw("Vertical") == 0f)) && moveTime != 0)
+        else if (((movement.x == 0f) && (movement.y == 0f) && moveTime != 0))
         {
             moveSpeed = 0f;
             moveTime = 0f;
