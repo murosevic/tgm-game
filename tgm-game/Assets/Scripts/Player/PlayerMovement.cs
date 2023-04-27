@@ -16,7 +16,18 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // TODO: movement always (-1|-1)
+        moveSpeed = c.Evaluate(moveTime);
+
+        if ((movement != new Vector2(0,0)) && moveSpeed < 10)
+        {
+            moveTime += Time.deltaTime;
+
+            if (movement.x == 0 && movement.y == 0)
+            {
+                moveSpeed = 0;
+            }
+        }
+
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
 

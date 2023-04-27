@@ -1,26 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor.UI;
 
 public class CameraOnOff : MonoBehaviour
 {
     public Canvas cc;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         cc.enabled = false;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void OpenCloseCamera()
     {
-        
-    }
-
-    private void OnMouseOver()
-    {
-        if (!cc.enabled) cc.enabled = true;
-        else cc.enabled = false;
+        if (cc.enabled) cc.enabled = false;
+        else cc.enabled = true;
     }
 }
