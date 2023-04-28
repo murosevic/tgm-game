@@ -4,19 +4,19 @@ using UnityEngine;
 
 public class AnimatronicMovement : MonoBehaviour
 {
-    public Transform[] positions = new Transform[4];
+    public Transform[] positions = new Transform[6];
 
-    public GameObject wehr;
+    public GameObject umaar;
 
     // Start is called before the first frame update
     void Start()
     {
-        Instantiate(wehr, positions[0]);
+        Instantiate(umaar, positions[0]);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        // TODO: Animatronic Movement
     }
 }
