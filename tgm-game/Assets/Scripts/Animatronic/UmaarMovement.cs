@@ -12,6 +12,9 @@ public class UmaarMovement : MonoBehaviour
     public int randomPos;
     public int moveDiff = 1;
 
+    private float nextActionTime = 0.0f;
+    private float period = 5;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -21,10 +24,20 @@ public class UmaarMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        random = Random.Range(0, 11);
         randomPos = Random.Range(0, 6);
 
-        if (random == moveDiff)
+        if ((Time.time > nextActionTime))
+        {
+            nextActionTime += period;
+
+            random = Random.Range(0, 11);
+        }
+
+        if (random <= moveDiff)
+        {
             umaar.transform.position = new Vector3(positions[randomPos].position.x, positions[randomPos].position.y, 0);
+
+            random = 11;
+        }
     }
 }
